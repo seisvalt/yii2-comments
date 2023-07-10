@@ -176,7 +176,12 @@ class DefaultController extends Controller
      */
     protected function getCommentAttributesFromEntity($entity)
     {
-        $decryptEntity = Yii::$app->getSecurity()->decryptByKey(mb_convert_encoding($entity, 'ISO-8859-1', 'UTF-8'), $this->getModule()->id);
+        if (PHP_OS == 'Linux') {
+            $decryptEntity = Yii::$app->getSecurity()->decryptByKey(utf8_decode($entity), $this->getModule()->id);
+        } else {
+            $decryptEntity = Yii::$app->getSecurity()->decryptByKey(mb_convert_encoding($entity, 'ISO-8859-1', 'UTF-8'), $this->getModule()->id);
+        }
+
         if (false !== $decryptEntity) {
             return Json::decode($decryptEntity);
         }

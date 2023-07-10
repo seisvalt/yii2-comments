@@ -163,11 +163,18 @@ class Comment extends Widget
      */
     protected function getEncryptedEntity()
     {
-        return mb_convert_encoding(Yii::$app->getSecurity()->encryptByKey(Json::encode([
+        $encryptedText = Yii::$app->getSecurity()->encryptByKey(Json::encode([
             'entity' => $this->entity,
             'entityId' => $this->entityId,
             'relatedTo' => $this->relatedTo,
-        ]), $this->getModule()->id), 'UTF-8');
+        ]), $this->getModule()->id);
+
+        if (PHP_OS == 'Linux') {
+            return utf8_encode($encryptedText);
+        } else {
+            return mb_convert_encoding($encryptedText, 'UTF-8');
+        }
+        
     }
 
     /**
