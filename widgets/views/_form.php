@@ -9,20 +9,19 @@ use yii\widgets\ActiveForm;
 /* @var $encryptedEntity string */
 /* @var $formId string comment form id */
 ?>
-<div class="nk-chat-editor">
-    <?php $form = ActiveForm::begin([
+
+<?php $form = ActiveForm::begin([
         'options' => [
             'id' => $formId,
-            //'class' => '',
+            'class' => 'nk-chat-editor',
         ],
         'action' => Url::to(['/comment/default/create', 'entity' => $encryptedEntity]),
         'validateOnChange' => false,
         'validateOnBlur' => false,
     ]); ?>
     <div class="nk-chat-editor-form">
-
-    <?php echo $form->field($commentModel, 'content', ['template' => '{input}{error}'])->textarea(['class' => 'form-control form-control-simple no-resize', 'placeholder' => Yii::t('yii2mod.comments', 'Add a comment...'), 'rows' => 4, 'data' => ['comment' => 'content']]); ?>
-    <?php echo $form->field($commentModel, 'parentId', ['template' => '{input}'])->hiddenInput(['data' => ['comment' => 'parent-id']]); ?>
+        <?php echo $form->field($commentModel, 'content', ['template' => '{input}{error}'])->textarea(['class' => 'form-control form-control-simple no-resize', 'placeholder' => Yii::t('yii2mod.comments', 'Add a comment...'), 'rows' => 2, 'data' => ['comment' => 'content']]); ?>
+        <?php echo $form->field($commentModel, 'parentId', ['template' => '{input}'])->hiddenInput(['data' => ['comment' => 'parent-id']]); ?>
     </div>
     <ul class="nk-chat-editor-tools g-2">
         <li>
@@ -30,6 +29,6 @@ use yii\widgets\ActiveForm;
             <?php echo Html::submitButton('<em class="icon ni ni-send-alt"></em>', ['class' => 'btn btn-round btn-primary btn-icon comment-submit']); ?>
         </li>
     </ul>
-    <?php $form->end(); ?>
+<?php $form->end(); ?>
 
-</div>
+

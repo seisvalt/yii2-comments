@@ -15,15 +15,8 @@ use yii\widgets\Pjax;
 /* @var $commentWrapperId string */
 ?>
 
-
-
-
 <div class="nk-chat" id="<?php echo $commentWrapperId; ?>">
-    
-    <div class="nk-chat-body ">
-    
-    <div>
-    <?php Pjax::begin(['enablePushState' => false, 'timeout' => 20000, 'id' => $pjaxContainerId]); ?>
+    <?php Pjax::begin(['enablePushState' => false, 'timeout' => 20000, 'id' => $pjaxContainerId, 'options' => ['class' => 'nk-chat-body']]); ?>
         <div class="nk-chat-head">
             <ul class="nk-chat-head-info">
                 <li class="nk-chat-body-close">
@@ -34,7 +27,7 @@ use yii\widgets\Pjax;
                         <div class="user-info">
                             <div class="lead-text">Acreedor</div>
                             <div class="sub-text"><span class="d-none d-sm-inline me-1">
-                                        <?php echo Yii::t('yii2mod.comments', 'Comments ({0})', $commentModel->getCommentsCount()); ?>
+                                <?php echo Yii::t('yii2mod.comments', 'Comments ({0})', $commentModel->getCommentsCount()); ?>
                             </div>
                         </div>
                     </div>
@@ -45,8 +38,8 @@ use yii\widgets\Pjax;
                 <div class="form-group">
                     <div class="form-control-wrap">
                         <div class="form-icon form-icon-left"><em class="icon ni ni-search"></em></div>
-                        <input type="text" class="form-control form-round" id="chat-search"
-                               placeholder="Search in Conversation"></div>
+                        <input type="text" class="form-control form-round" id="chat-search" placeholder="Search in Conversation"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,9 +76,6 @@ use yii\widgets\Pjax;
 
         <?php endif; ?>
         <?php Pjax::end(); ?>
-        
-    </div>
-    
     
 </div>
 
